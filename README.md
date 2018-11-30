@@ -2,7 +2,7 @@
 
 Chrome Extension browser action badges can only be modified from the Extension background page, so we need a way to communicate **from** the content script **to** the background page. We can use Chrome Runtime Messaging to accomplish this.
 
-The Chrome Runtime Messaging API can [be confusing to use](https://stackoverflow.com/questions/20077487/chrome-extension-message-passing-response-not-sent#comment64245056_20077854), so we'll make it easier to use by wrapping our own code around it. If you want to follow along, [I've pushed this entire example project to GitHub.](https://github.com/jacksteamdev/runtime-messaging-example)
+The Chrome Runtime Messaging API can [be confusing to use](https://stackoverflow.com/questions/20077487/chrome-extension-message-passing-response-not-sent#comment64245056_20077854), so we'll make it easier to use by wrapping our own code around it. If you want to follow along, [I've pushed the entire example source code up to GitHub.](https://github.com/jacksteamdev/runtime-messaging-example)
 
 ## Sending a message from a content script
 
@@ -83,7 +83,7 @@ function listenForMessage(callback) {
 }
 ```
 
-I won't go into great detail, but at the heart of `listenForMessage` is `chrome.runtime.onMessage`, an event that fires for `any` message sent from `any` tab by `any` extension. This is important to note, so make your message `greeting` unique to your extension (`"cookie-magic__set-cookies"`).
+I won't go into great detail, but at the heart of `listenForMessage` is `chrome.runtime.onMessage`, an event that fires for `any` message sent from `any` tab by the content script injected by your extension.
 
 We can use `listenForMessage` like this in `background.js`:
 
